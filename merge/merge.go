@@ -2,7 +2,7 @@ package merge
 
 import (
 	"context"
-	"sync/atomic"
+	"sync"
 	"time"
 )
 
@@ -28,8 +28,7 @@ type merge struct {
 	cancel  context.CancelFunc
 	storage map[Key]void
 	ticker  *time.Ticker
-
-	v uint32
+	mut     sync.RWMutex
 }
 
 func NewMerge(ctx context.Context, interval time.Duration) Merge {
@@ -50,46 +49,25 @@ func (m *merge) UpdateOnline(duration time.Duration) {
 }
 
 func (m *merge) Allowed(key Key) bool {
-
-	v := &m.v
-
-lo1:
-	for {
-		if atomic.CompareAndSwapUint32(v, 0, 1) {
-			_, has := m.storage[key]
-			atomic.StoreUint32(v, 0)
-			if has {
-				return false
-			}
-			break lo1
-		}
+	m.mut.RLock()
+	_, has := m.storage[key]
+	m.mut.RUnlock()
+	if has {
+		return false
 	}
 
-lo2:
-	for {
-		if atomic.CompareAndSwapUint32(v, 0, 1) {
-			m.storage[key] = noop
-			atomic.StoreUint32(v, 0)
-			break lo2
-		}
-	}
+	m.mut.Lock()
+	m.storage[key] = noop
+	m.mut.Unlock()
 
 	return true
 }
 
 func (m *merge) Clear() {
 	var newStorage = make(map[Key]void)
-
-	v := &m.v
-
-lo:
-	for {
-		if atomic.CompareAndSwapUint32(v, 0, 1) {
-			m.storage = newStorage
-			atomic.StoreUint32(v, 0)
-			break lo
-		}
-	}
+	m.mut.Lock()
+	m.storage = newStorage
+	m.mut.Unlock()
 }
 
 func (m *merge) Run() {
