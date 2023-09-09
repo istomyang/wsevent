@@ -28,7 +28,8 @@ type merge struct {
 	cancel  context.CancelFunc
 	storage map[Key]void
 	ticker  *time.Ticker
-	v       uint32
+
+	v uint32
 }
 
 func NewMerge(ctx context.Context, interval time.Duration) Merge {
@@ -54,8 +55,7 @@ func (m *merge) Allowed(key Key) bool {
 
 lo1:
 	for {
-		if atomic.LoadUint32(v) == 0 {
-			atomic.StoreUint32(v, 1)
+		if atomic.CompareAndSwapUint32(v, 0, 1) {
 			_, has := m.storage[key]
 			atomic.StoreUint32(v, 0)
 			if has {
@@ -67,8 +67,7 @@ lo1:
 
 lo2:
 	for {
-		if atomic.LoadUint32(v) == 0 {
-			atomic.StoreUint32(v, 1)
+		if atomic.CompareAndSwapUint32(v, 0, 1) {
 			m.storage[key] = noop
 			atomic.StoreUint32(v, 0)
 			break lo2
@@ -85,8 +84,7 @@ func (m *merge) Clear() {
 
 lo:
 	for {
-		if atomic.LoadUint32(v) == 0 {
-			atomic.StoreUint32(v, 1)
+		if atomic.CompareAndSwapUint32(v, 0, 1) {
 			m.storage = newStorage
 			atomic.StoreUint32(v, 0)
 			break lo
