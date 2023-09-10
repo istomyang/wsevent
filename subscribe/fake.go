@@ -1,6 +1,6 @@
 package subscribe
 
-import "wsevent/log"
+import "github.com/istomyang/wsevent/log"
 
 type fakeSubscriber struct {
 	config FakeConfig

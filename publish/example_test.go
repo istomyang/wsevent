@@ -4,9 +4,9 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/istomyang/wsevent/merge"
 	"math/rand"
 	"time"
-	"wsevent/merge"
 )
 
 type Message struct {

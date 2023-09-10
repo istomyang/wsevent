@@ -4,8 +4,8 @@ import (
 	"context"
 	"errors"
 	"github.com/gorilla/websocket"
+	"github.com/istomyang/wsevent/log"
 	"sync/atomic"
-	"wsevent/log"
 )
 
 // Session 's ownership belongs to ws.Client or ws.Server.

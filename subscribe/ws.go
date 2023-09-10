@@ -2,8 +2,8 @@ package subscribe
 
 import (
 	"context"
-	"wsevent/log"
-	"wsevent/ws"
+	"github.com/istomyang/wsevent/log"
+	"github.com/istomyang/wsevent/ws"
 )
 
 type wsSubscriber struct {

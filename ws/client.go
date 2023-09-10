@@ -3,7 +3,7 @@ package ws
 import (
 	"context"
 	"github.com/gorilla/websocket"
-	"wsevent/log"
+	"github.com/istomyang/wsevent/log"
 )
 
 // Client manages WebSocket connections in client end.

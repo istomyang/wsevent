@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 	"github.com/gorilla/websocket"
+	"github.com/istomyang/wsevent/log"
 	"net/http"
 	"sync"
 	"time"
-	"wsevent/log"
 )
 
 func Example() {
@@ -132,7 +132,7 @@ func (s *fakeSource) Get() <-chan int {
 func (s *fakeSource) Run() {
 	go func() {
 		var number = 0
-		for _ = range time.Tick(time.Second * 1) { // Allow leak.
+		for range time.Tick(time.Second * 1) { // Allow leak.
 			if number > 3 {
 				break
 			}

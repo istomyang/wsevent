@@ -2,8 +2,8 @@ package wsevent
 
 import (
 	"fmt"
-	"wsevent/log"
-	"wsevent/ws"
+	"github.com/istomyang/wsevent/log"
+	"github.com/istomyang/wsevent/ws"
 )
 
 type Register interface {

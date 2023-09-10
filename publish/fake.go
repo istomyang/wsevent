@@ -1,7 +1,7 @@
 package publish
 
 import (
-	"wsevent/log"
+	"github.com/istomyang/wsevent/log"
 )
 
 type fakePublisher struct{}

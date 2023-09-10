@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 	"github.com/gorilla/websocket"
+	"github.com/istomyang/wsevent/log"
 	"net/http"
 	"testing"
 	"time"
-	"wsevent/log"
 )
 
 func TestServer(t *testing.T) {

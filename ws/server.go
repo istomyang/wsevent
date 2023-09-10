@@ -2,8 +2,8 @@ package ws
 
 import (
 	"context"
+	"github.com/istomyang/wsevent/log"
 	"net/http"
-	"wsevent/log"
 )
 
 // Server manages WebSocket connections in server end.

@@ -3,9 +3,9 @@ package wsevent
 import (
 	"context"
 	"encoding/json"
-	"wsevent/log"
-	"wsevent/subscribe"
-	"wsevent/ws"
+	"github.com/istomyang/wsevent/log"
+	"github.com/istomyang/wsevent/subscribe"
+	"github.com/istomyang/wsevent/ws"
 )
 
 func Example() {

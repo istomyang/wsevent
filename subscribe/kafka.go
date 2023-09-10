@@ -3,8 +3,8 @@ package subscribe
 import (
 	"context"
 	"github.com/IBM/sarama"
+	"github.com/istomyang/wsevent/log"
 	"sync/atomic"
-	"wsevent/log"
 )
 
 type KafkaConfig struct {

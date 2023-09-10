@@ -2,10 +2,10 @@ package wsevent
 
 import (
 	"context"
+	"github.com/istomyang/wsevent/log"
+	"github.com/istomyang/wsevent/subscribe"
 	"math"
 	"runtime"
-	"wsevent/log"
-	"wsevent/subscribe"
 )
 
 // Dispatcher connects Register s and subscribe.Subscribe.

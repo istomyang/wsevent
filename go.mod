@@ -1,4 +1,4 @@
-module wsevent
+module github.com/istomyang/wsevent
 
 go 1.21.0
 

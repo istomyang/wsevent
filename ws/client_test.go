@@ -3,10 +3,10 @@ package ws
 import (
 	"context"
 	"github.com/gorilla/websocket"
+	"github.com/istomyang/wsevent/log"
 	"net/http"
 	"testing"
 	"time"
-	"wsevent/log"
 )
 
 func TestMain(m *testing.M) {

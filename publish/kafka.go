@@ -3,7 +3,7 @@ package publish
 import (
 	"context"
 	"github.com/IBM/sarama"
-	"wsevent/log"
+	"github.com/istomyang/wsevent/log"
 )
 
 type kafkaPublisher struct {

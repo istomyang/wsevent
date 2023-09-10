@@ -1,8 +1,8 @@
 package publish
 
 import (
+	"github.com/istomyang/wsevent/log"
 	"net/http"
-	"wsevent/log"
 )
 
 // MiddlewareConfig includes essential info must be used.
